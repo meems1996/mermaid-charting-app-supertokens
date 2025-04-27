@@ -6,8 +6,8 @@ import CodeMirror from '@uiw/react-codemirror';
 import { markdown } from '@codemirror/lang-markdown';
 
 // Import Supabase provider and Clerk user context
-import { useSupabase } from "@/lib/supabase-provider";
-import { useUser } from "@clerk/nextjs";
+// import { useSupabase } from "@/lib/supabase-provider";
+// import { useUser } from "@clerk/nextjs";
 
 // Type definitions for Mermaid component props
 type MermaidProps = {
@@ -34,74 +34,74 @@ export default function Home() {
   const [selectedChart, setSelectedChart] = useState<string | null>(null);
 
   // Supabase client and user context
-  const { supabase } = useSupabase();
-  const { user } = useUser();
+  // const { supabase } = useSupabase();
+  // const { user } = useUser();
 
   // Function to fetch saved charts from Supabase
-  const fetchCharts = async () => {
-    // Exit if Supabase or user is not available
-    // This prevents unnecessary API calls when the user is not logged in or Supabase is not initialized
-    if (!supabase || !user) return;
+  // const fetchCharts = async () => {
+  //   // Exit if Supabase or user is not available
+  //   // This prevents unnecessary API calls when the user is not logged in or Supabase is not initialized
+  //   if (!supabase || !user) return;
 
-    // Fetch chart data from the Supabase 'charts' table
-    const { data, error } = await supabase
-      .from('charts')
-      .select('content')
-      .order('created_at', { ascending: false });
+  //   // Fetch chart data from the Supabase 'charts' table
+  //   const { data, error } = await supabase
+  //     .from('charts')
+  //     .select('content')
+  //     .order('created_at', { ascending: false });
 
-    if (error) {
-      console.error('Error fetching charts:', error);
-      return;
-    }
+  //   if (error) {
+  //     console.error('Error fetching charts:', error);
+  //     return;
+  //   }
 
-    // Update saved charts state with the fetched chart contents
-    if (data) {
-      // Only map the content field into the array
-      setSavedCharts(data.map((item: ChartData) => item.content.trim()));
-    }
-  }
+  //   // Update saved charts state with the fetched chart contents
+  //   if (data) {
+  //     // Only map the content field into the array
+  //     setSavedCharts(data.map((item: ChartData) => item.content.trim()));
+  //   }
+  // }
 
   // Function to save the current chart to Supabase
-  const handleSave = async () => {
-    if (!supabase || !user) {
-      console.warn('Supabase or user not ready!');
-      return;
-    }
+  // const handleSave = async () => {
+  //   if (!supabase || !user) {
+  //     console.warn('Supabase or user not ready!');
+  //     return;
+  //   }
 
-    // Validate the Mermaid syntax before saving
-    try {
-      await mermaid.parse(code); // Throws error if invalid Mermaid code
-    } catch (err) {
-      console.warn('Invalid Mermaid syntax:', err);
-      return; // Prevent saving
-    }
+  //   // Validate the Mermaid syntax before saving
+  //   try {
+  //     await mermaid.parse(code); // Throws error if invalid Mermaid code
+  //   } catch (err) {
+  //     console.warn('Invalid Mermaid syntax:', err);
+  //     return; // Prevent saving
+  //   }
 
-    // Save the current chart to Supabase database
-    const { data, error } = await supabase
-      .from('charts')
-      .insert([
-        { 
-          content: code,
-          user_id: user.id,
-        }
-      ])
-      .select()
+  //   // Save the current chart to Supabase database
+  //   const { data, error } = await supabase
+  //     .from('charts')
+  //     .insert([
+  //       { 
+  //         content: code,
+  //         user_id: user.id,
+  //       }
+  //     ])
+  //     .select()
 
-    if (error) {
-      console.error('Error saving chart:', error);
-      return;
-    } else {
-      console.log('Chart saved:', data);
+  //   if (error) {
+  //     console.error('Error saving chart:', error);
+  //     return;
+  //   } else {
+  //     console.log('Chart saved:', data);
 
-      // Optimistically update the savedCharts state with the new chart
-    setSavedCharts((prev) => [code.trim(), ...prev]);
-    }
-  };
+  //     // Optimistically update the savedCharts state with the new chart
+  //   setSavedCharts((prev) => [code.trim(), ...prev]);
+  //   }
+  // };
 
-  // Fetch saved charts from Supabase once user is available
-  useEffect(() => {
-    fetchCharts();
-  }, [supabase, user])
+  // // Fetch saved charts from Supabase once user is available
+  // useEffect(() => {
+  //   fetchCharts();
+  // }, [supabase, user])
 
   return (
     <div className="max-w-7xl mx-auto mt-10 px-4">
@@ -125,7 +125,7 @@ export default function Home() {
         {/* Action buttons to run/save the chart */}
         <div className="flex flex-col gap-2">
           <Button onClick={() => setRendered(code.trim())}>Run</Button>
-          <Button onClick={handleSave}>Save</Button>
+          {/* <Button onClick={handleSave}>Save</Button> */}
         </div>
 
         {/* Live preview of rendered Mermaid chart */}

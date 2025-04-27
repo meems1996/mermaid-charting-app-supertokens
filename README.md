@@ -1,20 +1,6 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-I am building a MermaidJS editor tool, and adding authentication using Clerk to it. 
-
-Connecting it to Supabase for more user management.
-
-Comparing it later to SuperTokens by building it with SuperTokens too and Supabase too. 
-
-![alt text](image.png)
-
-![alt text](image-1.png)
-
-![alt text](image-2.png)
-
-![alt text](image-3.png)
-
-![alt text](image-5.png)
+I am building a MermaidJS editor tool, and adding authentication using SuperTokens.
 
 ## Getting Started
 
@@ -40,5 +26,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 * ShadCN for the UI
 * Mermaid.js library for the diagrams parsing.
 * SuperTokens for authentication
-
-
