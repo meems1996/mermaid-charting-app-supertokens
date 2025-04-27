@@ -39,8 +39,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 * Next.js 
 * ShadCN for the UI
 * Mermaid.js library for the diagrams parsing.
+* SuperTokens for authentication
 
 
-Using clerk, after set up, and using email authentication the email arrives pretty fast and also you for a code like so: 
-
-![alt text](image-4.png)
